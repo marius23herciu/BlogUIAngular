@@ -1,0 +1,14 @@
+.comment-box{
+    padding: 15px 35px;
+    background-color: #f0f0f0;
+}
+
+small{
+    font-size: 60%;
+}
+a{
+    font-size: 75%;
+}
+a+a {
+    margin-left: 30px;
+  }

@@ -1,0 +1,41 @@
+<div class="card mb-5 mt-5 pb-5 shadow-effect">
+    <div class="card-body">
+        <h4 class="mt-3 mb-3 ">Comments ({{comments.length+replyComments.length}})</h4>
+
+        <div class="comment-box mt-3" *ngFor="let comment of comments">
+            <h5 class="mb-0">{{comment.name}}</h5>
+            <small class="text-danger">LAST UPDATED - {{comment.createdAt | date:"MMM d, y, h:mm:ss a"}}</small>
+
+            <div class="mt-3 mb-3">
+                {{comment.comment}}
+            </div>
+
+            <a *ngIf="!comment.replyNow"  (click)="giveReply(comment.id)" class="mt-1">Reply</a>
+            <a *ngIf="comment.replyNow" (click)="dontGiveReply(comment.id)" class="mt-1">Do Not Reply</a>
+            <app-comment-form *ngIf="comment.replyNow"></app-comment-form>
+            <a *ngIf="checkForReplies(comment.id) && !comment.showReplies" (click)="viewReplies(comment.id)" class="mt-1">
+                View Replies ({{numberOfReplies(comment.id)}})</a>
+            <a *ngIf="checkForReplies(comment.id) && comment.showReplies" (click)="hideReplies(comment.id)" class="mt-1">Hide replies</a>
+
+                <hr>
+                
+
+                <ng-container *ngIf="comment.showReplies">
+                    <div class="comment-box mt-3" *ngFor="let reply of replyComments">
+                        <h5 class="mb-0" *ngIf="comment.id==reply.replyFor">{{reply.name}}</h5>
+                        <small class="text-danger"*ngIf="comment.id==reply.replyFor">LAST UPDATED - {{reply.createdAt | date:"MMM d, y, h:mm:ss a"}}</small>
+            
+                        <div class="mt-3 mb-3"*ngIf="comment.id==reply.replyFor">
+                            {{reply.comment}}
+                        </div>
+            
+                       
+                            <hr>
+                    </div>
+                </ng-container>
+                
+        </div>
+
+        
+    </div>
+</div>

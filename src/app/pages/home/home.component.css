@@ -1,0 +1,19 @@
+.featured-section{
+    padding-left: 130px;
+    padding-right: 130px;
+    padding-bottom: 130px;
+    background-color: var(--primary-color);
+}
+
+.btn-src{
+    background-color: var(--navbar-footer-color);
+    margin-left: 1%;
+}
+
+.btn-theme{
+    height: 25px;
+    border: none;
+    font-size: 18px;
+    color: white;
+    background-color: var(--primary-color);
+}

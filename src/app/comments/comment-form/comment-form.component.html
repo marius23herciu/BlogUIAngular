@@ -1,0 +1,67 @@
+<div class="card mt-5 shadow-effect">
+    <div class="card-body">
+        <h4 *ngIf="replyToId==''">Leave a Comment</h4>
+        <h4 *ngIf="replyToId!=''">Leave a Reply</h4>
+        <p *ngIf="replyToId==''">Write your opinion abot this blog post.</p>
+         <p>{{comment.name}}  {{comment.comment}}</p>
+        <form #commentForm = ngForm *ngIf="replyToId==''">
+            <div class="form-group">
+                <label for="">Name</label>
+                <input type="text" class="form-control" name="name" 
+                [(ngModel)]="comment.name" placeholder="Enter your name here."
+                ngModel required #Name='ngModel'
+                [ngClass]="{'is-invalid': Name.touched && Name.invalid}">
+
+                <div class="alert alert-danger" 
+                            *ngIf="Name.touched && Name.hasError('required')">Name field cannot be empty</div>
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="">Comment</label>
+                <textarea cols="30" rows="10" class="form-control" name="comment" 
+                ngModel required #Comment='ngModel'
+                [(ngModel)]="comment.comment" placeholder="Add your comment here."
+                [ngClass]="{'is-invalid': Comment.touched && Comment.invalid}"></textarea>
+
+                <div class="alert alert-danger" 
+                            *ngIf="Comment.touched && Comment.hasError('required')">Comment field cannot be empty</div>
+            </div>
+
+            
+
+            <button class="btn btn-info btn-theme mt-3" (click)="postComment(postId!, comment)"
+            [disabled]="commentForm.invalid" *ngIf="replyToId==''" >Add Comment</button>
+           
+        </form>
+
+        <form #commentForm = ngForm *ngIf="replyToId!=''">
+            <div class="form-group">
+                <label for="">Name</label>
+                <input type="text" class="form-control" name="name" 
+                [(ngModel)]="replyComment.name" placeholder="Enter your name here."
+                ngModel required #Name='ngModel'
+                [ngClass]="{'is-invalid': Name.touched && Name.invalid}">
+
+                <div class="alert alert-danger" 
+                            *ngIf="Name.touched && Name.hasError('required')">Name field cannot be empty</div>
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="">Comment</label>
+                <textarea cols="30" rows="10" class="form-control" name="comment" 
+                ngModel required #Comment='ngModel'
+                [(ngModel)]="replyComment.comment" placeholder="Add your comment here."
+                [ngClass]="{'is-invalid': Comment.touched && Comment.invalid}"></textarea>
+
+                <div class="alert alert-danger" 
+                            *ngIf="Comment.touched && Comment.hasError('required')">Comment field cannot be empty</div>
+            </div>
+
+       
+        <button class="btn btn-info btn-theme mt-3" (click)="postReplyComment(postId!, replyComment)"
+        [disabled]="commentForm.invalid" *ngIf="replyToId!=''" >Add Reply</button>
+    </form>
+
+
+    </div>
+</div>

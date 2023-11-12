@@ -1,0 +1,40 @@
+.card{
+    background-color: var(--secondary-color);
+    width: 900px;
+    height: 300px;
+    font-size: 70%;
+    border-radius: 10%;
+}
+
+.subs-text{
+    width: 500px;
+}
+
+.div-input{
+    display: inline-block;
+}
+
+.alert{
+  font-size: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  display: flex;
+  height: 20px;
+  }
+  .input-alert-name{
+    margin-top: -15px;
+    margin-left: 20px;
+    width: 41.5%;
+  }
+  .input-alert-email1{
+    margin-top: -50px;
+    margin-left: 382px;
+    width: 41.5%;
+    
+  }
+  .input-alert-email2{
+    margin-top: -15px;
+    margin-left: 382px;
+    width: 41.5%;
+    
+  }

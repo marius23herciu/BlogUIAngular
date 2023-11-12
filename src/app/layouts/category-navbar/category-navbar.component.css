@@ -1,0 +1,8 @@
+nav {
+    margin-top: 70px;
+    height: 45px;
+    background-color: var(--navbar-footer-color);
+}
+.nav-link{
+    text-transform: uppercase;
+}

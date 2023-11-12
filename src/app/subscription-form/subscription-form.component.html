@@ -1,0 +1,69 @@
+<div class="card shadow-effect">
+    <div class="card-body">
+        <div class="text-center mt-3 mb-5">
+            <h3>SUBSCRIPTION FORM</h3>
+            <p class="m-auto subs-text">Subscribe to MyBlog to get notifications about our latest articles. Insert your name and your email and hit the Subscribe button.</p>
+            
+            <div class="alert alert-danger mt-3" *ngIf="isEmailAlreadyUsed">
+                Email is already in use!
+            </div>
+
+            <div class="alert alert-info mt-3" *ngIf="isSubscribed">
+                Thank you for subscribing to our newsletter service!
+            </div>
+
+
+
+            <form class="form-inline mb-5" #subForm = ngForm (ngSubmit)="onSubmit(sub)" *ngIf="!isSubscribed">
+
+                <div class="form-group col-md-5 div-input">
+                    <input type="text" class="form-control" 
+                    placeholder="Your Name" name = "name" ngModel
+                    #Name="ngModel"
+                    [(ngModel)]="sub.name"
+                    required
+                    [ngClass]="{'is-invalid':Name.touched && Name.invalid}">
+
+                   
+                    
+                </div>
+                <div class="form-group col-md-5 div-input ml-3 div-input">
+                    <input type="email" class="form-control" 
+                    placeholder="Email Address" name = "email" ngModel
+                    [(ngModel)]="sub.email"
+                    #Email="ngModel"
+                    required email
+                    [ngClass]="{'is-invalid':Email.touched && Email.invalid}">
+
+                 
+                    
+
+                </div>
+                
+                <div class="col-md-2 div-input ">
+                    <button class="btn btn-info btn-block btn-theme alrt" [disabled]="subForm.invalid">Subscribe</button>
+                  
+                </div>
+                <div class="alert alert-danger input-alert-name" 
+                            *ngIf="Name.touched && Name.hasError('required')">Name field cannot be empty</div>
+                <div class="alert alert-danger input-alert-email1" 
+                    *ngIf="Email.touched && Email.hasError('required')&&Name.touched && Name.hasError('required')">Email field cannot be empty</div>
+                <div class="alert alert-danger input-alert-email1" 
+                    *ngIf="Email.touched && Email.hasError('email')&&Name.touched && Name.hasError('required')">Enter a valid email address</div>
+
+                    <div class="alert alert-danger input-alert-email2" 
+                    *ngIf="Email.touched && Email.hasError('required')&&!Name.touched">Email field cannot be empty</div>
+                    <div class="alert alert-danger input-alert-email2" 
+                    *ngIf="Email.touched && Email.hasError('required')&&!Name.hasError('required')">Email field cannot be empty</div>
+                <div class="alert alert-danger input-alert-email2" 
+                    *ngIf="Email.touched && Email.hasError('email')&&Name.touched&&!Name.hasError('required')">Enter a valid email address</div>
+                
+
+            </form>
+
+
+
+
+        </div>
+    </div>
+</div>

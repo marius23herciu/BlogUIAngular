@@ -1,0 +1,56 @@
+
+<section class="featured-section">
+    <button *ngIf="!activeSearch" class="btn  btn-theme btn-ml" (click)="activeSearch = true">Search... 
+        <img src="/assets/img/search.png" width="20px" /></button>
+        <br *ngIf="activeSearch">
+    <div *ngIf="activeSearch" class="label" style="display:flex;"> 
+        <input [(ngModel)]="searchString" 
+        (keyup.enter)="loadPostsBySearching(searchString)"
+       class="form-control"  id="searchString" placeholder="Search..."
+       name="searchString" style="width: 300px;">
+     <button class="btn btn-info btn-src btn-ml" (click)="loadPostsBySearching(searchString)" >Search</button></div>
+
+
+     <div class="container-fluid" *ngIf="searching">
+        <div class="row">
+            <div class="col-md-12 text-center mt-5">
+                <h2 class="text-white">Search results...</h2>
+        <p class="text-white" *ngIf="searchResultPosts.length<=0"> There are no results for your search... Try searching for something else.</p>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-lg-3" *ngFor="let searchPost of searchResultPosts">
+                <app-post-card [postData]="searchPost"></app-post-card>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="container-fluid" *ngIf="!searching">
+        <div class="row">
+            <div class="col-md-12 text-center mt-5">
+                <h2 class="text-white"> Featured Posts</h2>
+                <p class="text-white"> Check out the most interesting articles from MyBlog.</p>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-lg-3" *ngFor="let featuredPost of featuredPosts">
+                <app-post-card [postData]="featuredPost"></app-post-card>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<section class="container mt-5" *ngIf="!searching">
+    <div class="col-md-12 text-center">
+        <h2>Latest Posts</h2>
+        <p> The latest articles are here. Don't miss them.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mt-3"*ngFor="let latestPost of latestPosts">
+            <app-post-card [postData]="latestPost"></app-post-card>
+        </div>
+    </div>
+</section>
